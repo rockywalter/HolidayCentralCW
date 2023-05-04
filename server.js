@@ -22,6 +22,10 @@ const flightsRouter = require('./routes/flights');
 
 app.use('/flights', flightsRouter);
 
+const hotelsRouter = require('./routes/hotels');
+
+app.use('/hotels', hotelsRouter);
+
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
