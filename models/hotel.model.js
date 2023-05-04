@@ -8,7 +8,10 @@ const hotelSchema = new Schema({
   destination: {type: String, required:true},
   checkInDate:{type:Date,required:true},
   checkOutDate:{type:Date,required:true},
-  price:{type:Number,required:true}
+  price:{type:Number,required:true},
+  starRating:{type:Number},
+  roomType:{type:String,required:true},
+  boardBasis:{type:String,required:true}
 
 }, {
   timestamps: true,

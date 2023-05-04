@@ -15,6 +15,9 @@ router.route('/add').post((req, res) => {
   const checkInDate = Date.parse(req.body.checkInDate);
   const checkOutDate = Date.parse(req.body.checkOutDate);
   const price = Number(req.body.price);
+  const starRating = Number(req.body.starRating);
+  const roomType = req.body.roomType;
+  const boardBasis = req.body.boardBasis;
 
 
 
@@ -23,7 +26,11 @@ router.route('/add').post((req, res) => {
      destination,
      checkInDate,
      checkOutDate,
-     price
+     price,
+     starRating,
+     roomType,
+     boardBasis
+     
   });
 
   newHotel.save()
@@ -45,13 +52,16 @@ router.route('/delete/:id').delete((req, res) => {
 
 router.route('/update/:id').put((req, res) => {
     let hotelId = req.params.id;
-    const {hotel_name,destination,checkInDate,checkOutDate,price} = req.body;
+    const {hotel_name,destination,checkInDate,checkOutDate,price,starRating,roomType,boardBasis} = req.body;
     const updateStudent = {
         hotel_name,
         destination,
         checkInDate,
         checkOutDate,
-        price 
+        price,
+        starRating,
+        roomType,
+        boardBasis
     }
    const update = Hotel.findByIdAndUpdate(hotelId,updateStudent)
    .then(() => {
