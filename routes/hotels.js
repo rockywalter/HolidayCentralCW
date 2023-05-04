@@ -40,7 +40,7 @@ router.route('/add').post((req, res) => {
 
 router.route('/:id').get((req, res) => {
     Hotel.findById(req.params.id)
-    .then(Hotel => res.json(flight))
+    .then(Hotel => res.json(Hotel))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
