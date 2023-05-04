@@ -11,7 +11,8 @@ const hotelSchema = new Schema({
   price:{type:Number,required:true},
   starRating:{type:Number},
   roomType:{type:String,required:true},
-  boardBasis:{type:String,required:true}
+  boardBasis:{type:String,required:true},
+  facility:{type:String,required:true}
 
 }, {
   timestamps: true,

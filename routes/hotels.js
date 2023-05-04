@@ -18,6 +18,7 @@ router.route('/add').post((req, res) => {
   const starRating = Number(req.body.starRating);
   const roomType = req.body.roomType;
   const boardBasis = req.body.boardBasis;
+  const facility = req.body.facility;
 
 
 
@@ -29,7 +30,8 @@ router.route('/add').post((req, res) => {
      price,
      starRating,
      roomType,
-     boardBasis
+     boardBasis,
+     facility
      
   });
 
@@ -61,7 +63,8 @@ router.route('/update/:id').put((req, res) => {
         price,
         starRating,
         roomType,
-        boardBasis
+        boardBasis,
+        facility
     }
    const update = Hotel.findByIdAndUpdate(hotelId,updateStudent)
    .then(() => {
