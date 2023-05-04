@@ -18,6 +18,7 @@ router.route('/add').post((req, res) => {
   const starRating = Number(req.body.starRating);
   const roomType = req.body.roomType;
   const boardBasis = req.body.boardBasis;
+  const facility = req.body.facility;
 
 
 
@@ -29,7 +30,8 @@ router.route('/add').post((req, res) => {
      price,
      starRating,
      roomType,
-     boardBasis
+     boardBasis,
+     facility
      
   });
 
@@ -40,7 +42,7 @@ router.route('/add').post((req, res) => {
 
 router.route('/:id').get((req, res) => {
     Hotel.findById(req.params.id)
-    .then(Hotel => res.json(flight))
+    .then(Hotel => res.json(Hotel))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -53,7 +55,7 @@ router.route('/delete/:id').delete((req, res) => {
 router.route('/update/:id').put((req, res) => {
     let hotelId = req.params.id;
     const {hotel_name,destination,checkInDate,checkOutDate,price,starRating,roomType,boardBasis} = req.body;
-    const updateStudent = {
+    const updateHotel = {
         hotel_name,
         destination,
         checkInDate,
@@ -61,9 +63,10 @@ router.route('/update/:id').put((req, res) => {
         price,
         starRating,
         roomType,
-        boardBasis
+        boardBasis,
+        facility
     }
-   const update = Hotel.findByIdAndUpdate(hotelId,updateStudent)
+   const update = Hotel.findByIdAndUpdate(hotelId,updateHotel)
    .then(() => {
     res.status(200).send({status: "hotel updated"})
    }).catch((err) =>{
