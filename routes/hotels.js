@@ -55,7 +55,7 @@ router.route('/delete/:id').delete((req, res) => {
 router.route('/update/:id').put((req, res) => {
     let hotelId = req.params.id;
     const {hotel_name,destination,checkInDate,checkOutDate,price,starRating,roomType,boardBasis} = req.body;
-    const updateStudent = {
+    const updateHotel = {
         hotel_name,
         destination,
         checkInDate,
@@ -66,7 +66,7 @@ router.route('/update/:id').put((req, res) => {
         boardBasis,
         facility
     }
-   const update = Hotel.findByIdAndUpdate(hotelId,updateStudent)
+   const update = Hotel.findByIdAndUpdate(hotelId,updateHotel)
    .then(() => {
     res.status(200).send({status: "hotel updated"})
    }).catch((err) =>{
