@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const flightSchema = new Schema({
+const FlightBookingsSchema = new Schema({
+    passenger_name: { type: String, required: true },  
+    passenger_nic: { type: String, required: true },  
   flight_number: { type: String, required: true },
   departure_destination: { type: String, required: true },
   arrival_destination: { type: String, required: true },
@@ -12,13 +14,12 @@ const flightSchema = new Schema({
   airline: { type: String, required: true },
   price: { type: Number, required: true },
   duration: { type: String, required: true },
-  window_seat_count: { type: Number, required: true },
-  midddle_seat_count: { type: Number, required: true },
-
+  seat_type: { type: String, required: true },
+  
 }, {
   timestamps: true,
 });
 
-const Flight = mongoose.model('Filght', flightSchema);
+const FlightBookings = mongoose.model('FlightBookings', FlightBookingsSchema);
 
-module.exports = Flight;
+module.exports = FlightBookings;

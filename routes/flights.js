@@ -7,6 +7,46 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/searchflights').get((req, res) => {
+    const { departure, arrival, dDate,aDate,cClass } = req.query;
+
+  
+   
+
+    const filter = {};
+
+    if (departure) {
+      filter.departure_destination = departure;
+    }
+    if (arrival) {
+      filter.arrival_destination = arrival;
+    }
+    if (dDate) {
+      filter.departure_date = dDate;
+    }
+    if (aDate) {
+      filter.arrival_date = aDate;
+    }
+    if (cClass) {
+      filter.cabin_class = cClass;
+    }
+  
+  
+    async function fetchFlights() {
+        try {
+          const flights = await Flight.find(filter).exec();
+          res.json(flights);
+        } catch (error) {
+          console.error('Error fetching flights:', error);
+          res.status(500).json({ error: 'Internal Server Error' });
+        }
+      }
+    
+      fetchFlights();
+
+
+});
+
 router.route('/add').post((req, res) => {
 
   const departure_destination = req.body.departure_destination;
