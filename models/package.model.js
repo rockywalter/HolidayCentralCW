@@ -7,9 +7,9 @@ const packageSchema = new Schema({
   package_name:{type: String,required:true},
   destination: {type: String, required:true},
   accomadation: {type: String, required:true},
-  numberOfDays:{type:Number,required:true},
-  numberOfTravelers:{type:Number,required:true},
-  price:{type:Number,required:true},
+  numberOfDays:{type:String,required:true},
+  numberOfTravelers:{type:String,required:true},
+  price:{type:String,required:true},
   packageRating:{type:Number},
   specialty:{type:String,required:true}
 
