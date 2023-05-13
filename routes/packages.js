@@ -7,16 +7,54 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/searchpackages').get((req, res) => {
+    const { numberOfTravelers, destination, numberOfDays,specialty } = req.query;
+    console.log(req.query);
+
+  
+   
+
+    const filter = {};
+
+    if (numberOfTravelers) {
+      filter.numberOfTravelers = numberOfTravelers;
+    }
+    if (destination) {
+      filter.destination = destination;
+    }
+    if (numberOfDays) {
+      filter.numberOfDays = numberOfDays;
+    }
+    if (specialty) {
+      filter.specialty = specialty;
+    }
+  
+  
+    async function fetchPackages() {
+        try {
+          const packages = await Package.find(filter).exec();
+          res.json(packages);
+        } catch (error) {
+          console.error('Error fetching packages:', error);
+          res.status(500).json({ error: 'Internal Server Error' });
+        }
+      }
+    
+      fetchPackages();
+
+
+});
+
 router.route('/add').post((req, res) => {
 
 
   const package_name = req.body.package_name;
   const destination = req.body.destination;
   const accomadation = req.body.accomadation;
-  const numberOfDays = Number(req.body.numberOfDays);
-  const numberOfTravelers = Number(req.body.numberOfTravelers);
-  const price = Number(req.body.price);
-  const packageRating = Number(req.body.packageRating);
+  const numberOfDays = req.body.numberOfDays;
+  const numberOfTravelers =req.body.numberOfTravelers;
+  const price = req.body.price;
+  const packageRating = req.body.packageRating;
   const specialty = req.body.specialty;
   
 
