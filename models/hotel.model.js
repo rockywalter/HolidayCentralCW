@@ -4,10 +4,11 @@ const Schema = mongoose.Schema;
 
 const hotelSchema = new Schema({
  
+  hotel_id :{type: String,required:true},
   hotel_name:{type: String,required:true},
   destination: {type: String, required:true},
-  checkInDate:{type:Date,required:true},
-  checkOutDate:{type:Date,required:true},
+  checkInDate:{type:String,required:true},
+  checkOutDate:{type:String,required:true},
   price:{type:Number,required:true},
   starRating:{type:Number},
   roomType:{type:String,required:true},

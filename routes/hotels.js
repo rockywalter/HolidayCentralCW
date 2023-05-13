@@ -7,13 +7,50 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/searchhotels').get((req, res) => {
+    const { destination, checkingDate, checkoutDate,starRating } = req.query;
+
+  
+   
+
+    const filter = {};
+
+    if (destination) {
+      filter.destination = destination;
+    }
+    if (checkingDate) {
+      filter.checkInDate = checkingDate;
+    }
+    if (starRating) {
+      filter.starRating = starRating;
+    }
+    if (checkoutDate) {
+      filter.checkOutDate = checkoutDate;
+    }
+  
+  
+    async function fetchHotels() {
+        try {
+          const hotels = await Hotel.find(filter).exec();
+          res.json(hotels);
+        } catch (error) {
+          console.error('Error fetching hotels:', error);
+          res.status(500).json({ error: 'Internal Server Error' });
+        }
+      }
+    
+      fetchHotels();
+
+
+});
+
 router.route('/add').post((req, res) => {
 
-
+  const hotel_id = req.body.hotel_id;
   const hotel_name = req.body.hotel_name;
   const destination = req.body.destination;
-  const checkInDate = Date.parse(req.body.checkInDate);
-  const checkOutDate = Date.parse(req.body.checkOutDate);
+  const checkInDate = req.body.checkInDate;
+  const checkOutDate = req.body.checkOutDate;
   const price = Number(req.body.price);
   const starRating = Number(req.body.starRating);
   const roomType = req.body.roomType;
@@ -23,6 +60,7 @@ router.route('/add').post((req, res) => {
 
 
   const newHotel = new Hotel({
+     hotel_id,
      hotel_name,
      destination,
      checkInDate,
