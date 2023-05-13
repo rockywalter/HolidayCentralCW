@@ -48,11 +48,12 @@ router.route('/searchflights').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
-
+  
+  const flight_number = req.body.flight_number;
   const departure_destination = req.body.departure_destination;
   const arrival_destination = req.body.arrival_destination;
-  const departure_date = Date.parse(req.body.departure_date);
-  const arrival_date = Date.parse(req.body.arrival_date);
+  const departure_date = req.body.departure_date;
+  const arrival_date = req.body.arrival_date;
   const cabin_class = req.body.cabin_class;
   const airline = req.body.airline;
   const price = Number(req.body.price);
@@ -61,6 +62,7 @@ router.route('/add').post((req, res) => {
   const midddle_seat_count = Number(req.body.midddle_seat_count);
 
   const newFlight = new Flight({
+     flight_number,
      departure_destination,
      arrival_destination,
      departure_date,
